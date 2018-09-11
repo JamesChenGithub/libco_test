@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/alexichen/UnixSpace/libco/co_closure.h
+
+/Users/alexichen/UnixSpace/libco/example_closure.cpp
+co_closure.h
+/Users/alexichen/UnixSpace/libco/co_closure.h
+stdio.h
+-
+stdlib.h
+-
+vector
+-
+pthread.h
+-
+unistd.h
+-
+

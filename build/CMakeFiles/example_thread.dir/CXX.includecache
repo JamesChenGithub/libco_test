@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/alexichen/UnixSpace/libco/co_routine.h
+stdint.h
+-
+sys/poll.h
+-
+pthread.h
+-
+
+/Users/alexichen/UnixSpace/libco/co_routine_inner.h
+co_routine.h
+/Users/alexichen/UnixSpace/libco/co_routine.h
+coctx.h
+/Users/alexichen/UnixSpace/libco/coctx.h
+
+/Users/alexichen/UnixSpace/libco/coctx.h
+stdlib.h
+-
+
+/Users/alexichen/UnixSpace/libco/example_thread.cpp
+co_routine.h
+/Users/alexichen/UnixSpace/libco/co_routine.h
+co_routine_inner.h
+/Users/alexichen/UnixSpace/libco/co_routine_inner.h
+stdio.h
+-
+stdlib.h
+-
+stdint.h
+-
+pthread.h
+-
+unistd.h
+-
+
