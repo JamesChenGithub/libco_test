@@ -41,7 +41,7 @@ void* RoutineFunc(void* args)
 	return NULL;
 }
 
-int main()
+int example_copystack_test()
 {
 	stShareStack_t* share_stack= co_alloc_sharestack(1, 1024 * 128);
 	stCoRoutineAttr_t attr;

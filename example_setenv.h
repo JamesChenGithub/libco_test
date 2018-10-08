@@ -28,7 +28,7 @@ const char* CGI_ENV_HOOK_LIST [] =
 {
 	"CGINAME",
 };
-struct stRoutineArgs_t
+struct stRoutineArgs_setEnv_t
 {
 	int iRoutineID;
 };
@@ -62,25 +62,25 @@ void SetAndGetEnv(int iRoutineID)
 	printf("routineid %d get env CGINAME %s\n", iRoutineID, env);
 }
 
-void* RoutineFunc(void* args)
+void* Example_SetEnv_RoutineFunc(void* args)
 {
 	co_enable_hook_sys();
 
-	stRoutineArgs_t* g = (stRoutineArgs_t*)args;
+	stRoutineArgs_setEnv_t* g = (stRoutineArgs_setEnv_t*)args;
 
 	SetAndGetEnv(g->iRoutineID);
 	return NULL;
 }
 
-int main(int argc, char* argv[])
+int example_setenv_test()
 {
 	co_set_env_list(CGI_ENV_HOOK_LIST, sizeof(CGI_ENV_HOOK_LIST) / sizeof(char*));
-	stRoutineArgs_t  args[3];
+	stRoutineArgs_setEnv_t  args[3];
 	for (int i = 0; i < 3; i++)
 	{
 		stCoRoutine_t* co = NULL;
 		args[i].iRoutineID = i;
-		co_create(&co, NULL, RoutineFunc, &args[i]);
+		co_create(&co, NULL, Example_SetEnv_RoutineFunc, &args[i]);
 		co_resume(co);
 	}
 	co_eventloop(co_get_epoll_ct(), NULL, NULL);

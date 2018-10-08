@@ -7,13 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9205A91F216B8D5000D54D6A /* example_echocli.h in Sources */ = {isa = PBXBuildFile; fileRef = 9205A917216B8D5000D54D6A /* example_echocli.h */; };
+		9205A922216B8D5000D54D6A /* example_cond.h in Sources */ = {isa = PBXBuildFile; fileRef = 9205A91A216B8D5000D54D6A /* example_cond.h */; };
+		9205A925216B8D5000D54D6A /* example_copystack.h in Sources */ = {isa = PBXBuildFile; fileRef = 9205A91D216B8D5000D54D6A /* example_copystack.h */; };
+		9205A92C216B929800D54D6A /* example_thread.h in Sources */ = {isa = PBXBuildFile; fileRef = 9205A927216B929800D54D6A /* example_thread.h */; };
+		9205A92D216B929800D54D6A /* example_setenv.h in Sources */ = {isa = PBXBuildFile; fileRef = 9205A928216B929800D54D6A /* example_setenv.h */; };
+		9205A92E216B929800D54D6A /* example_echosvr.h in Sources */ = {isa = PBXBuildFile; fileRef = 9205A929216B929800D54D6A /* example_echosvr.h */; };
+		9205A92F216B929800D54D6A /* example_poll.h in Sources */ = {isa = PBXBuildFile; fileRef = 9205A92A216B929800D54D6A /* example_poll.h */; };
+		9205A930216B929800D54D6A /* example_specific.h in Sources */ = {isa = PBXBuildFile; fileRef = 9205A92B216B929800D54D6A /* example_specific.h */; };
 		92445FAA2147F2FE00733AB6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92445FA92147F2FE00733AB6 /* main.cpp */; };
 		92445FBC2147F32C00733AB6 /* co_epoll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92445FB22147F32B00733AB6 /* co_epoll.cpp */; };
 		92445FBD2147F32C00733AB6 /* co_hook_sys_call.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92445FB32147F32B00733AB6 /* co_hook_sys_call.cpp */; };
 		92445FBE2147F32C00733AB6 /* coctx_swap.S in Sources */ = {isa = PBXBuildFile; fileRef = 92445FB72147F32C00733AB6 /* coctx_swap.S */; };
 		92445FBF2147F32C00733AB6 /* coctx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92445FB82147F32C00733AB6 /* coctx.cpp */; };
 		92445FC02147F32C00733AB6 /* co_routine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92445FBB2147F32C00733AB6 /* co_routine.cpp */; };
-		92445FC22147F54200733AB6 /* example_closure.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92445FC12147F54200733AB6 /* example_closure.cpp */; };
+		92445FC22147F54200733AB6 /* example_closure.h in Sources */ = {isa = PBXBuildFile; fileRef = 92445FC12147F54200733AB6 /* example_closure.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +37,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9205A917216B8D5000D54D6A /* example_echocli.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = example_echocli.h; path = ../../../example_echocli.h; sourceTree = "<group>"; };
+		9205A91A216B8D5000D54D6A /* example_cond.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = example_cond.h; path = ../../../example_cond.h; sourceTree = "<group>"; };
+		9205A91D216B8D5000D54D6A /* example_copystack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = example_copystack.h; path = ../../../example_copystack.h; sourceTree = "<group>"; };
+		9205A927216B929800D54D6A /* example_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = example_thread.h; path = ../../../example_thread.h; sourceTree = "<group>"; };
+		9205A928216B929800D54D6A /* example_setenv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = example_setenv.h; path = ../../../example_setenv.h; sourceTree = "<group>"; };
+		9205A929216B929800D54D6A /* example_echosvr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = example_echosvr.h; path = ../../../example_echosvr.h; sourceTree = "<group>"; };
+		9205A92A216B929800D54D6A /* example_poll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = example_poll.h; path = ../../../example_poll.h; sourceTree = "<group>"; };
+		9205A92B216B929800D54D6A /* example_specific.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = example_specific.h; path = ../../../example_specific.h; sourceTree = "<group>"; };
 		92445FA62147F2FE00733AB6 /* libco_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = libco_test; sourceTree = BUILT_PRODUCTS_DIR; };
 		92445FA92147F2FE00733AB6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		92445FB12147F32B00733AB6 /* co_closure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = co_closure.h; path = ../../../co_closure.h; sourceTree = "<group>"; };
@@ -42,7 +58,7 @@
 		92445FB92147F32C00733AB6 /* co_routine_specific.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = co_routine_specific.h; path = ../../../co_routine_specific.h; sourceTree = "<group>"; };
 		92445FBA2147F32C00733AB6 /* coctx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = coctx.h; path = ../../../coctx.h; sourceTree = "<group>"; };
 		92445FBB2147F32C00733AB6 /* co_routine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = co_routine.cpp; path = ../../../co_routine.cpp; sourceTree = "<group>"; };
-		92445FC12147F54200733AB6 /* example_closure.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = example_closure.cpp; path = ../../../example_closure.cpp; sourceTree = "<group>"; };
+		92445FC12147F54200733AB6 /* example_closure.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = example_closure.h; path = ../../../example_closure.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +92,15 @@
 		92445FA82147F2FE00733AB6 /* libco_test */ = {
 			isa = PBXGroup;
 			children = (
-				92445FC12147F54200733AB6 /* example_closure.cpp */,
+				9205A929216B929800D54D6A /* example_echosvr.h */,
+				9205A92A216B929800D54D6A /* example_poll.h */,
+				9205A928216B929800D54D6A /* example_setenv.h */,
+				9205A92B216B929800D54D6A /* example_specific.h */,
+				9205A927216B929800D54D6A /* example_thread.h */,
+				9205A91A216B8D5000D54D6A /* example_cond.h */,
+				9205A91D216B8D5000D54D6A /* example_copystack.h */,
+				9205A917216B8D5000D54D6A /* example_echocli.h */,
+				92445FC12147F54200733AB6 /* example_closure.h */,
 				92445FA92147F2FE00733AB6 /* main.cpp */,
 			);
 			path = libco_test;
@@ -156,13 +180,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9205A922216B8D5000D54D6A /* example_cond.h in Sources */,
+				9205A930216B929800D54D6A /* example_specific.h in Sources */,
 				92445FBE2147F32C00733AB6 /* coctx_swap.S in Sources */,
+				9205A92E216B929800D54D6A /* example_echosvr.h in Sources */,
+				9205A92F216B929800D54D6A /* example_poll.h in Sources */,
+				9205A925216B8D5000D54D6A /* example_copystack.h in Sources */,
 				92445FBC2147F32C00733AB6 /* co_epoll.cpp in Sources */,
 				92445FC02147F32C00733AB6 /* co_routine.cpp in Sources */,
-				92445FC22147F54200733AB6 /* example_closure.cpp in Sources */,
+				92445FC22147F54200733AB6 /* example_closure.h in Sources */,
 				92445FBD2147F32C00733AB6 /* co_hook_sys_call.cpp in Sources */,
 				92445FBF2147F32C00733AB6 /* coctx.cpp in Sources */,
+				9205A92C216B929800D54D6A /* example_thread.h in Sources */,
+				9205A91F216B8D5000D54D6A /* example_echocli.h in Sources */,
 				92445FAA2147F2FE00733AB6 /* main.cpp in Sources */,
+				9205A92D216B929800D54D6A /* example_setenv.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +315,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P7W6W36ZY5;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../..";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -292,6 +325,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P7W6W36ZY5;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../..";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

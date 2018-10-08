@@ -35,7 +35,7 @@
 #include <unistd.h>
 #include <signal.h>
 
-using namespace std;
+//using namespace std;
 struct stEndPoint
 {
 	char *ip;
@@ -179,7 +179,7 @@ static void *readwrite_routine( void *arg )
 	return 0;
 }
 
-int main(int argc,char *argv[])
+int example_echocli_test(int argc,char *argv[32])
 {
 	stEndPoint endpoint;
 	endpoint.ip = argv[1];

@@ -22,7 +22,7 @@
 #include <vector>
 #include <pthread.h>
 #include <unistd.h>
-using namespace std;
+//using namespace std;
 
 static void *thread_func( void * arg )
 {
@@ -30,9 +30,9 @@ static void *thread_func( void * arg )
 	p->exec();
 	return 0;
 }
-static void batch_exec( vector<stCoClosure_t*> &v )
+static void batch_exec( std::vector<stCoClosure_t*> &v )
 {
-	vector<pthread_t> ths;
+    std::vector<pthread_t> ths;
 	for( size_t i=0;i<v.size();i++ )
 	{
 		pthread_t tid;
@@ -44,16 +44,16 @@ static void batch_exec( vector<stCoClosure_t*> &v )
 		pthread_join( ths[i],0 );
 	}
 }
-int main( int argc,char *argv[] )
+int example_closure_test()
 {
     
     
-	vector< stCoClosure_t* > v;
+	std::vector< stCoClosure_t* > v;
 
 	pthread_mutex_t m = PTHREAD_MUTEX_INITIALIZER;
 
 	int total = 100;
-	vector<int> v2;
+	std::vector<int> v2;
 	co_ref( ref,total,v2,m);
 	for(int i=0;i<10;i++)
 	{

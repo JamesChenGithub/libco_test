@@ -22,7 +22,7 @@
 #include <stdio.h>
 #include <vector>
 #include <iostream>
-using namespace std;
+//using namespace std;
 struct stRoutineArgs_t
 {
 	stCoRoutine_t* co;
@@ -35,7 +35,7 @@ struct stRoutineSpecificData_t
 
 CO_ROUTINE_SPECIFIC(stRoutineSpecificData_t, __routine);
 
-void* RoutineFunc(void* args)
+void* Example_Specific_RoutineFunc(void* args)
 {
 	co_enable_hook_sys();
 	stRoutineArgs_t* routine_args = (stRoutineArgs_t*)args;
@@ -47,13 +47,13 @@ void* RoutineFunc(void* args)
 	}
 	return NULL;
 }
-int main()
+int example_specific_test()
 {
 	stRoutineArgs_t args[10];
 	for (int i = 0; i < 10; i++)
 	{
 		args[i].routine_id = i;
-		co_create(&args[i].co, NULL, RoutineFunc, (void*)&args[i]);
+		co_create(&args[i].co, NULL, Example_Specific_RoutineFunc, (void*)&args[i]);
 		co_resume(args[i].co);
 	}
 	co_eventloop(co_get_epoll_ct(), NULL, NULL);

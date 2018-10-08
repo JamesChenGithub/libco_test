@@ -21,7 +21,7 @@
 #include <stdlib.h>
 #include <queue>
 #include "co_routine.h"
-using namespace std;
+//using namespace std;
 struct stTask_t
 {
 	int id;
@@ -29,7 +29,7 @@ struct stTask_t
 struct stEnv_t
 {
 	stCoCond_t* cond;
-	queue<stTask_t*> task_queue;
+	std::queue<stTask_t*> task_queue;
 };
 void* Producer(void* args)
 {
@@ -65,7 +65,7 @@ void* Consumer(void* args)
 	}
 	return NULL;
 }
-int main()
+int example_cond_test()
 {
 	stEnv_t* env = new stEnv_t;
 	env->cond = co_cond_alloc();

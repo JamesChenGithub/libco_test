@@ -38,7 +38,7 @@
 #include <cstring>
 #endif
 
-using namespace std;
+//using namespace std;
 
 struct task_t
 {
@@ -60,7 +60,7 @@ static int SetNonBlock(int iSock)
 
 
 
-static void SetAddr(const char *pszIP,const unsigned short shPort,struct sockaddr_in &addr)
+static void Poll_SetAddr(const char *pszIP,const unsigned short shPort,struct sockaddr_in &addr)
 {
 	bzero(&addr,sizeof(addr));
 	addr.sin_family = AF_INET;
@@ -94,8 +94,8 @@ static int CreateTcpSocket(const unsigned short shPort  = 0 ,const char *pszIP  
 				setsockopt(fd,SOL_SOCKET,SO_REUSEADDR,&nReuseAddr,sizeof(nReuseAddr));
 			}
 			struct sockaddr_in addr ;
-			SetAddr(pszIP,shPort,addr);
-			int ret = bind(fd,(struct sockaddr*)&addr,sizeof(addr));
+			Poll_SetAddr(pszIP,shPort,addr);
+			int ret = bind(fd, (struct sockaddr*)&addr, sizeof(addr));
 			if( ret != 0)
 			{
 				close(fd);
@@ -110,7 +110,7 @@ static void *poll_routine( void *arg )
 {
 	co_enable_hook_sys();
 
-	vector<task_t> &v = *(vector<task_t>*)arg;
+	std::vector<task_t> &v = *(std::vector<task_t>*)arg;
 	for(size_t i=0;i<v.size();i++)
 	{
 		int fd = CreateTcpSocket();
@@ -128,7 +128,7 @@ static void *poll_routine( void *arg )
 		pf[i].fd = v[i].fd;
 		pf[i].events = ( POLLOUT | POLLERR | POLLHUP );
 	}
-	set<int> setRaiseFds;
+	std::set<int> setRaiseFds;
 	size_t iWaitCnt = v.size();
 	for(;;)
 	{
@@ -177,26 +177,26 @@ static void *poll_routine( void *arg )
 			co_self(),v.size(),setRaiseFds.size() );
 	return 0;
 }
-int main(int argc,char *argv[])
+int example_poll_test(int argc,char *argv[])
 {
-	vector<task_t> v;
+	std::vector<task_t> v;
 	for(int i=1;i<argc;i+=2)
 	{
 		task_t task = { 0 };
-		SetAddr( argv[i],atoi(argv[i+1]),task.addr );
+		Poll_SetAddr( argv[i],atoi(argv[i+1]),task.addr );
 		v.push_back( task );
 	}
 
 //------------------------------------------------------------------------------------
 	printf("--------------------- main -------------------\n");
-	vector<task_t> v2 = v;
+	std::vector<task_t> v2 = v;
 	poll_routine( &v2 );
 	printf("--------------------- routine -------------------\n");
 
 	for(int i=0;i<10;i++)
 	{
 		stCoRoutine_t *co = 0;
-		vector<task_t> *v2 = new vector<task_t>();
+		std::vector<task_t> *v2 = new std::vector<task_t>();
 		*v2 = v;
 		co_create( &co,NULL,poll_routine,v2 );
 		printf("routine i %d\n",i);

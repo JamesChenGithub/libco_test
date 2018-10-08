@@ -41,7 +41,7 @@
 #include <sys/wait.h>
 #endif
 
-using namespace std;
+//using namespace std;
 struct task_t
 {
 	stCoRoutine_t *co;
@@ -151,7 +151,7 @@ static void *accept_routine( void * )
 	return 0;
 }
 
-static void SetAddr(const char *pszIP,const unsigned short shPort,struct sockaddr_in &addr)
+static void SRV_SetAddr(const char *pszIP,const unsigned short shPort,struct sockaddr_in &addr)
 {
 	bzero(&addr,sizeof(addr));
 	addr.sin_family = AF_INET;
@@ -185,7 +185,7 @@ static int CreateTcpSocket(const unsigned short shPort /* = 0 */,const char *psz
 				setsockopt(fd,SOL_SOCKET,SO_REUSEADDR,&nReuseAddr,sizeof(nReuseAddr));
 			}
 			struct sockaddr_in addr ;
-			SetAddr(pszIP,shPort,addr);
+			SRV_SetAddr(pszIP,shPort,addr);
 			int ret = bind(fd,(struct sockaddr*)&addr,sizeof(addr));
 			if( ret != 0)
 			{
@@ -198,7 +198,7 @@ static int CreateTcpSocket(const unsigned short shPort /* = 0 */,const char *psz
 }
 
 
-int main(int argc,char *argv[])
+int example_echosvr_test(int argc,char *argv[])
 {
 	if(argc<5){
 		printf("Usage:\n"

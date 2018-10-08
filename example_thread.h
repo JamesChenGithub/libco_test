@@ -37,7 +37,7 @@ static void *routine_func( void * )
 	co_eventloop( ev,loop,0 );
 	return 0;
 }
-int main(int argc,char *argv[])
+int example_thread_test(int argc,char *argv[])
 {
 	int cnt = atoi( argv[1] );
 
