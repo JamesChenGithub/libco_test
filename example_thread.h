@@ -29,12 +29,17 @@
 
 int loop(void *)
 {
+    std::cout << "loop func" << std::endl;
 	return 0;
 }
+static  int test_threadindex = 0;
 static void *routine_func( void * )
 {
+    std::cout << "test_threadindex : " << test_threadindex << std::endl;
 	stCoEpoll_t * ev = co_get_epoll_ct(); //ct = current thread
-	co_eventloop( ev,loop,0 );
+    std::cout << "test_threadindex co_get_epoll_ct: " << test_threadindex << std::endl;
+	co_eventloop( ev, loop, 0);
+    std::cout << "test_threadindex co_eventloop: " << ++test_threadindex << std::endl;
 	return 0;
 }
 int example_thread_test(int argc,char *argv[])
@@ -44,7 +49,7 @@ int example_thread_test(int argc,char *argv[])
 	pthread_t tid[ cnt ];
 	for(int i=0;i<cnt;i++)
 	{
-		pthread_create( tid + i,NULL,routine_func,0);
+		pthread_create(tid + i, NULL, routine_func, 0);
 	}
 	for(;;)
 	{

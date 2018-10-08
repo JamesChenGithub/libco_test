@@ -19,8 +19,6 @@
 using namespace std;
 
 int main(int argc, const char * argv[]) {
-    
-    
     bool loop = true;
     while (loop)
     {
@@ -86,7 +84,7 @@ int main(int argc, const char * argv[]) {
             case '5':
             {
                 std::cout << ">>>>>>>>>>>>>>>>>> example_thread <<<<<<<<<<<<<<<<<<" << std::endl;
-                char par0[32] = "example_echocli";
+                char par0[32] = "example_thread";
                 char par1[32] = "5";
                 
                 char* param[2] = {

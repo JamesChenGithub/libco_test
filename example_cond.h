@@ -24,34 +24,52 @@
 //using namespace std;
 struct stTask_t
 {
-	int id;
+	int tsid;
+    
+    ~stTask_t()
+    {
+        std::cout << "~stTask_t" << std::endl;
+    }
 };
 struct stEnv_t
 {
+    bool stoped;
 	stCoCond_t* cond;
 	std::queue<stTask_t*> task_queue;
+    
+    ~stEnv_t()
+    {
+        std::cout << "~stEnv_t" << std::endl;
+    }
 };
 void* Producer(void* args)
 {
 	co_enable_hook_sys();
 	stEnv_t* env=  (stEnv_t*)args;
-	int id = 0;
-	while (true)
+	int tsid = 0;
+	while (!env->stoped)
 	{
 		stTask_t* task = (stTask_t*)calloc(1, sizeof(stTask_t));
-		task->id = id++;
+		task->tsid = tsid++;
 		env->task_queue.push(task);
-		printf("%s:%d produce task %d\n", __func__, __LINE__, task->id);
+		printf("%s:%d produce task %d\n", __func__, __LINE__, task->tsid);
 		co_cond_signal(env->cond);
-		poll(NULL, 0, 1000);
+		poll(NULL, 0, 100);
+        
+        if (tsid > 5) {
+            env->stoped = true;
+            co_cond_signal(env->cond);
+        }
 	}
+    printf("produce exit\n");
+    co_disable_hook_sys();
 	return NULL;
 }
 void* Consumer(void* args)
 {
 	co_enable_hook_sys();
 	stEnv_t* env = (stEnv_t*)args;
-	while (true)
+	while (!env->stoped)
 	{
 		if (env->task_queue.empty())
 		{
@@ -60,24 +78,45 @@ void* Consumer(void* args)
 		}
 		stTask_t* task = env->task_queue.front();
 		env->task_queue.pop();
-		printf("%s:%d consume task %d\n", __func__, __LINE__, task->id);
+		printf("%s:%d consume task %d\n", __func__, __LINE__, task->tsid);
 		free(task);
 	}
+    
+    printf("Consumer exit\n");
 	return NULL;
+}
+
+//stCoRoutine_t* consumer_routine = NULL;
+//stCoRoutine_t* producer_routine = NULL;
+int exit_example_test(void *param)
+{
+    stEnv_t *env = (stEnv_t *)param;
+    if (env->stoped) {
+        delete env;
+        env = NULL;
+        
+//        co_release(consumer_routine);
+//        co_release(producer_routine);
+        
+        return -1;
+    }
+    return 0;
 }
 int example_cond_test()
 {
 	stEnv_t* env = new stEnv_t;
+    env->stoped = false;
 	env->cond = co_cond_alloc();
 
-	stCoRoutine_t* consumer_routine;
-	co_create(&consumer_routine, NULL, Consumer, env);
-	co_resume(consumer_routine);
+    stCoRoutine_t* consumer_routine;
+    co_create(&consumer_routine, NULL, Consumer, env);
+    co_resume(consumer_routine);
 
-	stCoRoutine_t* producer_routine;
+    
+    stCoRoutine_t* producer_routine;
 	co_create(&producer_routine, NULL, Producer, env);
 	co_resume(producer_routine);
 	
-	co_eventloop(co_get_epoll_ct(), NULL, NULL);
+	co_eventloop(co_get_epoll_ct(), exit_example_test, env);
 	return 0;
 }
