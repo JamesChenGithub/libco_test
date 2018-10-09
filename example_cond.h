@@ -39,6 +39,13 @@ struct stEnv_t
     
     ~stEnv_t()
     {
+        while(!this->task_queue.empty())
+        {
+            stTask_t* task = this->task_queue.front();
+            this->task_queue.pop();
+            free(task);
+        }
+        
         std::cout << "~stEnv_t" << std::endl;
     }
 };
@@ -92,12 +99,6 @@ int exit_example_test(void *param)
 {
     stEnv_t *env = (stEnv_t *)param;
     if (env->stoped) {
-        delete env;
-        env = NULL;
-        
-//        co_release(consumer_routine);
-//        co_release(producer_routine);
-        
         return -1;
     }
     return 0;
@@ -118,5 +119,16 @@ int example_cond_test()
 	co_resume(producer_routine);
 	
 	co_eventloop(co_get_epoll_ct(), exit_example_test, env);
+    
+    std::cout << "end co_eventloop" << std::endl;
+    if(env)
+    {
+        co_cond_free(env->cond);
+        
+        delete env;
+        env = NULL;
+    }
+    co_release(consumer_routine);
+    co_release(producer_routine);
 	return 0;
 }
