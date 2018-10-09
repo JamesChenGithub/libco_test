@@ -41,7 +41,7 @@ static void batch_exec( std::vector<stCoClosure_t*> &v )
 	}
 	for( size_t i=0;i<v.size();i++ )
 	{
-		pthread_join( ths[i],0 );
+		pthread_join( ths[i], 0 );
 	}
 }
 int example_closure_test()
@@ -86,6 +86,15 @@ int example_closure_test()
 
 	batch_exec( v );
 	printf("done\n");
+    
+    for (auto it : v)
+    {
+        if (it)
+        {
+            free(it);
+        }
+    }
+    v.clear();
 
 	return 0;
 }

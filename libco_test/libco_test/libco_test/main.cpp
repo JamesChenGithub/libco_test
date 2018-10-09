@@ -19,13 +19,11 @@
 using namespace std;
 
 int main(int argc, const char * argv[]) {
-    
-    example_cond_test();
-    example_cond_test();
-    example_cond_test();
-    example_cond_test();
-    
-    
+    example_closure_test();
+    example_closure_test();
+    example_closure_test();
+    example_closure_test();
+    example_closure_test();
     bool loop = true;
     while (loop)
     {
